@@ -22,11 +22,11 @@ import java.util.concurrent.Executors;
  * @date 2021/10/20 17:19
  */
 public class FixedThreadPoolChaohong_1111 {
-    public final static String sourcesFile = "D:\\download\\resources\\source.txt";
-    public final static String destnationFile = "D:\\download\\resources\\destnation.txt";
+    public final static String SOURCES_FILE = "D:\\download\\resources\\source.txt";
+    public final static String DESTNATION_FILE = "D:\\download\\resources\\destnation.txt";
 
     public static void main(String[] args) {
-        File f = new File(destnationFile);
+        File f = new File(DESTNATION_FILE);
         try {
             //true,则追加写入text文本
             BufferedWriter output = new BufferedWriter(new FileWriter(f, false));
@@ -45,7 +45,7 @@ public class FixedThreadPoolChaohong_1111 {
         int THREAD_NUMS = 10;
         try {
             //建立一个对象，它把文件内容转成计算机能读懂的语言
-            BufferedReader br = new BufferedReader(new FileReader(sourcesFile));
+            BufferedReader br = new BufferedReader(new FileReader(SOURCES_FILE));
             ExecutorService service = Executors.newFixedThreadPool(THREAD_NUMS);
             for (int i = 0; i < THREAD_NUMS; i++) {
                 service.execute(new Runnable() {
@@ -98,21 +98,24 @@ public class FixedThreadPoolChaohong_1111 {
     }
 
     public static void writeToMyFile(String str) {
-        File f = new File(destnationFile);
+        File f = new File(DESTNATION_FILE);
         if (f.exists()) {
             //System.out.print("文件存在");
         } else {
-            //System.out.print("文件不存在");
+            //System.out.print("文件不存在,自动创建");
             try {
-                f.createNewFile();//不存在则创建
+                //不存在则创建
+                f.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         try {
-            BufferedWriter output = new BufferedWriter(new FileWriter(f, true));//true,则追加写入text文本
+            //true,则追加写入text文本
+            BufferedWriter output = new BufferedWriter(new FileWriter(f, true));
             output.write(str);
-            output.write("\r\n");//换行
+            //换行
+            output.write("\r\n");
             output.flush();
             output.close();
         } catch (IOException e) {
@@ -120,11 +123,17 @@ public class FixedThreadPoolChaohong_1111 {
         }
     }
 
+    /**
+     * 淘宝客-推广者-定向活动目标发布接口
+     * 淘宝地址为 https://open.taobao.com/api.htm?spm=a211vu.11758832.0.0.433949e2iy7UxJ&source=search&docId=55891&docType=2
+     * 目的：调用该接口判断用户是否符合活动目标
+     * @param phone_number
+     * @return
+     */
     public static String JudgeChaoHongIsNewUser(String phone_number) {
-//apitaobao.tbk.dg.vegas.send.status(淘宝客-推广者-超级红包领取状态查询)
-        String serverUrl = "https://eco.taobao.com/router/rest";
-        String appKey = "25545902";
-        String appSecret = "8263fce6c29a4fb4925e5a9daa228654";
+        String serverUrl = "xxx";
+        String appKey = "xxx";
+        String appSecret = "xxx";
         AutoRetryTaobaoClient client = new AutoRetryTaobaoClient(serverUrl, appKey, appSecret);
         client.setMaxRetryCount(2);
         TbkRtaConsumerMatchRequest  request = new TbkRtaConsumerMatchRequest();
