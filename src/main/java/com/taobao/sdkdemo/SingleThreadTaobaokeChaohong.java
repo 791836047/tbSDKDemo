@@ -99,7 +99,7 @@ public class SingleThreadTaobaokeChaohong {
         }
 
         public static String JudgeChaoHongIsNewUser(String phone_number) {
-                TaobaoClient client = new DefaultTaobaoClient("https://eco.taobao.com/router/rest", "25545902", "8263fce6c29a4fb4925e5a9daa228654");
+                TaobaoClient client = new DefaultTaobaoClient("https://eco.taobao.com/router/rest", "xxx", "xxx");
                 TbkRtaConsumerMatchRequest req = new TbkRtaConsumerMatchRequest ();
 //apitaobao.tbk.dg.vegas.send.status(淘宝客-推广者-超级红包领取状态查询)
 //req.setRelationId(relationId);
